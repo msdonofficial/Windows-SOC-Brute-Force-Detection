@@ -1,0 +1,2 @@
+DetectionTime,Account,SourceIP,Workstation,FailedAttempts,TimeWindow,Severity
+06-11-2026 11:53,SOC_LabTest,::1,LAB-WIN11,5,10 minutes,Medium
