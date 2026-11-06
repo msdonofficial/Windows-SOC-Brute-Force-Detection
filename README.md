@@ -62,85 +62,37 @@ The lab uses native Windows security auditing and custom PowerShell detection sc
 
 
 
-```text
+```mermaid
 
-&#x20;       Windows 11 Endpoint
+flowchart TD
 
-&#x20;                |
+&#x20;   A\[Windows 11 Endpoint] --> B\[Windows Security Auditing]
 
-&#x20;                v
+&#x20;   B --> C\[Security Event Log]
 
-&#x20;      Windows Security Auditing
+&#x20;   C --> D\[Event ID 4625 - Failed Login]
 
-&#x20;                |
+&#x20;   C --> E\[Event ID 4624 - Successful Login]
 
-&#x20;                v
+&#x20;   C --> F\[Event ID 4776 - Credential Validation]
 
-&#x20;      Security Event Log
+&#x20;   D --> G\[PowerShell Brute-Force Detection]
 
-&#x20;                |
+&#x20;   D --> H\[Login Correlation Script]
 
-&#x20;         +------+------+
+&#x20;   E --> H
 
-&#x20;         |             |
+&#x20;   G --> I\[Security Alerts]
 
-&#x20;         v             v
+&#x20;   H --> I
 
-&#x20;   Event ID 4625   Event ID 4624
+&#x20;   I --> J\[Console Output]
 
-&#x20;   Failed Login    Successful Login
+&#x20;   I --> K\[CSV Reports]
 
-&#x20;         |             |
+&#x20;   J --> L\[SOC Investigation]
 
-&#x20;         v             |
-
-&#x20;   PowerShell          |
-
-&#x20;   Detection Script    |
-
-&#x20;         |             |
-
-&#x20;         v             |
-
-&#x20;   Brute-Force         |
-
-&#x20;   Detection           |
-
-&#x20;         |             |
-
-&#x20;         +------+------+
-
-&#x20;                |
-
-&#x20;                v
-
-&#x20;      Login Correlation Script
-
-&#x20;                |
-
-&#x20;                v
-
-&#x20;         Security Alerts
-
-&#x20;                |
-
-&#x20;         +------+------+
-
-&#x20;         |             |
-
-&#x20;         v             v
-
-&#x20;      Console       CSV Reports
-
-&#x20;         |             |
-
-&#x20;         +------+------+
-
-&#x20;                |
-
-&#x20;                v
-
-&#x20;          SOC Investigation
+&#x20;   K --> L
 
 ```
 
@@ -264,6 +216,12 @@ Windows-SOC-Brute-Force-Detection/
 
 ├── screenshots/
 
+│   ├── 01-Windows-Security-Events.png
+
+│   ├── 02-Brute-Force-Detection-Alert.png
+
+│   └── 03-Login-Correlation-Alert.png
+
 │
 
 └── README.md
@@ -278,7 +236,9 @@ Windows-SOC-Brute-Force-Detection/
 
 1\. Open PowerShell as Administrator.
 
-2\. Enable script execution for the current PowerShell session only:
+2\. Navigate to the project root directory.
+
+3\. Enable script execution for the current PowerShell session only:
 
 
 
@@ -289,8 +249,6 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 ```
 
 
-
-3\. Navigate to the project folder.
 
 4\. Execute the brute-force detection script:
 
@@ -395,6 +353,4 @@ This project was developed for educational and cybersecurity training purposes. 
 
 
 Cybersecurity Enthusiast | SOC Analyst \& Security Monitoring Projects
-
-
 
